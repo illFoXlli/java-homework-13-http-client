@@ -31,14 +31,8 @@ public class UserPostCommentsExporter {
         // получаю комментарии
         List<Comment> comments = service.getCommentsByPost(lastPost.id);
 
-        // создаю папку если ее нету
-        File dir = new File("data");
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
         // сохраняю в файл
-        String fileName = "data/user-" + userId + "-post-" + lastPost.id + "-comments.json";
+        String fileName = "src/main/resources/user-" + userId + "-post-" + lastPost.id + "-comments.json";
 
         mapper.writerWithDefaultPrettyPrinter()
                 .writeValue(new File(fileName), comments);
